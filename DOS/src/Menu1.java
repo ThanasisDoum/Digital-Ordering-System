@@ -2,34 +2,35 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JSlider;
 import java.awt.Font;
 
 public class Menu1 extends JFrame {
 	
-	/*Η συγκεκριμενη κλάση πραγματοποιεί την πλειοψηφια των λειτουργιών του προιόντος.Εδώ γίνεται η το άνοιγμα του μενού,
-	 * η προσθήκη των προιόντων στο καλάθι του πελάτη, η επιλογή της ποσοτητας καθώς και η εμφάνιση του ποσού.
-	 *   Στο τελικό παραδοτέο δεν υπάρχουν η επιλογή τραπεζιου, η δημιουργία λογαριασμού,ο διαχωρισμός μεταξύ πελάτη και προσωπικού καθώς
-	 *   και η εμφάνιση της παραγγελιας σε περίπτωση που ο χρηστης επιλέξει να συνδεθεί ως "προσωπικό"
+	/**
+	 * 
 	 */
+	private static final long serialVersionUID = 1L;
+	/* This class performs most of the functions of the product. Here the menu is opened,
+	* products are added to the customer's basket, the user picks the quantity of every product as well as the display of the amount.
+	* In the final version there is no choice of table, account creation, separation between customer and staff as well
+	* as the display of the order in case the user chooses to log in as "staff"
+	*/
 	
 	String[] items = {"Κόκα κόλα", "Λεμονάδα", "Πορτοκαλάδα", "Γκαζόζα","Σόδα","Νερό","Χυμός πορτοκάλι","Χυμός ροδάκινο",
 	"Χυμός βύσσινο","Χυμός μπανάνα","Τορτίγια λευκή καπνιστή γαλοπούλα","Τορτίγια ολικής άλεσης γαλοπούλα","Club sandwich","Mojito classic","Mojito strawberry","Mojito passion fruit","Mojito blueberry","Porn star martini","Daiquiri strawberry","Daiquiri passion fruit","Daiquiri blueberry","Paloma","Aperol spritz"};
 	double[] prices= {1.5,1.5,1.5,1.5,1.5,0.5,1.5,1.5,1.5,1.5,3,3,4,6,6,6,6,6,6,6,6,7,6};
 	int[] quantity= {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-	//οι τρεις αυτοί πίνακες αντιπροσωπεύουν τα ονόματα των προιόντων,τις τιμές και την ποσότητα που έχει επιλεξει ο χρήστης
-	//ειναι παραλληλοι μεταξυ τους
+	// these three arrays represent the product names, prices and quantity selected by the user
+	// they are parallel to each other
 	JButton contwithorder = new JButton("\u03A3\u03C5\u03BD\u03AD\u03C7\u03B5\u03B9\u03B1");
 	JTextArea order = new JTextArea();
 	JTextArea totalcostshown = new JTextArea();
@@ -119,7 +120,8 @@ public class Menu1 extends JFrame {
 		JButton a1 = new JButton("+");
 		a1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				quantity[0]++;//σε κάθε κουμπί "+" αυξάνεται το αντίστοιχο κελί του πίνακα quantity
+				quantity[0]++;//each button "+" increases the corresponding cell in the quantity array
+
 				printOrder();
 			}
 		});
@@ -219,8 +221,8 @@ public class Menu1 extends JFrame {
 		JButton r1 = new JButton("-");
 		r1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (quantity[0]>0) {//σε κάθε κουμπί "-" μειώνεται το αντίστοιχο κελί του πίνακα quantity, αφού πρώτα ελεγχτεί ότι η ποσότητα είναι τουλάχιστον 1
-					quantity[0]--;//με αυτόν τον τρόπο δεν μπορεί να εισαχθεί αρνητική ποσότητα
+				if (quantity[0]>0) {//on each button "-" the corresponding cell in the quantity table is reduced, after first checking that the quantity is at least 1
+					quantity[0]--;//in this way a negative quantity can not be introduced
 					printOrder();
 				}
 			}
@@ -830,7 +832,6 @@ public class Menu1 extends JFrame {
 		scrollPane.setViewportView(panel_3);
 		panel_3.setLayout(null);
 		
-		//JTextArea order = new JTextArea();
 		order.setEditable(false);
 		order.setBounds(0, 0, 283, 376);
 		panel_3.add(order);
@@ -877,8 +878,8 @@ public class Menu1 extends JFrame {
 	}
 	public void printOrder() {
 				
-		//Εκτύπωση της παραγγελίας.Ελέγχεται ο πίνακας με τις ποσότητες και όπου εμφανίζεται ποσότητα >0 εκυπώνονται τα αντίστοιχα κελιά 
-		//των πινάκων με τα ονόματα και τις τιμές
+		// Display of the order. The array with the quantities is checked and wherever quantity> 0 it displays the corresponding cells from the 
+		// other two arrays(names,prices)
 		order.selectAll();
 		order.replaceSelection("");
 		 for (int i=0;i<23;i++) {
@@ -889,8 +890,8 @@ public class Menu1 extends JFrame {
 		 showtotalcost();
 	}
 	public void showtotalcost() {
-		
-		//εμφάνιση του συνολικού κόστους της παραγγελίας
+
+		//total cost display
 		totalcostshown.selectAll();
 		totalcostshown.replaceSelection("");
 		total=0;
@@ -904,7 +905,7 @@ public class Menu1 extends JFrame {
 		}else contwithorder.setEnabled(false);
 	}
 	public void showmessage() {
-		//εμφάνιση προειδοποίησης στην πρώτη προσθήκη που πάει να κάνει ο χρήστης από την κατηγορία "Ποτά"
+		//display a warning in the first add-on that the user is going to make from the "Drinks" category
 		if(!shown) {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
@@ -919,8 +920,8 @@ public class Menu1 extends JFrame {
 		}
 	}
 	public static void messageshown() {
-		//αφού η προειδοποίηση εμφανίστηκε ήδη και ο χρήστης επιβεβαίωσε ότι είναι >18 η μεταβλητή με την οποία πραγματοποιήται
-		//ο έλεγχος γίνεται αληθής 
+		// after the warning has already appeared and the user has confirmed that they are older than 18 the variable with which
+		// the check is done changes to true
 		shown=true;
 	}
 }

@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +13,10 @@ import javax.swing.JButton;
 
 public class ConfirmOrder extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JButton confirmorderbtn = new JButton("\u039F\u03BB\u03BF\u03BA\u03BB\u03AE\u03C1\u03C9\u03C3\u03B7 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1\u03C2");
 	JTextArea order = new JTextArea();
 	JTextArea totalcostshown = new JTextArea();
@@ -22,8 +25,8 @@ public class ConfirmOrder extends JFrame {
 
 	private JPanel contentPane;
 
-	//σε αυτήν την κλάση πραγματοποιήται η εμφάνιση του τελικού ποσού καθώς και της παραγγελίας,ενώ ο χρήστης υποχρεούται να επιλέξει 
-	//τον τρόπο πληρωμής καθώς και τον τύπο της παραγγελίας
+	//in this class the final amount is displayed as well as the order, while the user is obliged to choose
+	// the method of payment as well as the type of order
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -52,7 +55,6 @@ public class ConfirmOrder extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		//JTextArea order = new JTextArea();
 		order.setEditable(false);
 		order.setBounds(10, 0, 323, 425);
 		panel.add(order);
@@ -73,7 +75,7 @@ public class ConfirmOrder extends JFrame {
 		cash.setBounds(382, 134, 109, 23);
 		cash.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pmchosen++;//αυξάνεται η μεταβλητή επιλογής τρόπου πληρωμής κατά 1 
+				pmchosen++;//the payment method selection variable is increased by 1 
 				enablebutton(pmchosen,dtchosen);
 		}});
 
@@ -83,7 +85,7 @@ public class ConfirmOrder extends JFrame {
 		card.setBounds(382, 160, 197, 23);
 		card.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pmchosen++;//αυξάνεται η μεταβλητή επιλογής τρόπου πληρωμής κατά 1 
+				pmchosen++;//the payment method selection variable is increased by 1
 				enablebutton(pmchosen,dtchosen);
 		}});
 
@@ -101,7 +103,7 @@ public class ConfirmOrder extends JFrame {
 		takeaway.setBounds(382, 211, 109, 23);
 		takeaway.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dtchosen++;//αυξάνεται η μεταβλητή επιλογής τύπου παραγγελίας κατά 1 
+				dtchosen++;//the order type selection variable is increased by 1
 				enablebutton(pmchosen,dtchosen);
 		}});
 
@@ -111,7 +113,7 @@ public class ConfirmOrder extends JFrame {
 		sit.setBounds(382, 237, 109, 23);
 		sit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dtchosen++;//αυξάνεται η μεταβλητή επιλογής τύπου παραγγελίας κατά 1 
+				dtchosen++;//the order type selection variable is increased by 1 
 				enablebutton(pmchosen,dtchosen);
 		}});
 		panel.add(sit);
@@ -152,8 +154,8 @@ public class ConfirmOrder extends JFrame {
 		}
 		
 		public void enablebutton(int pm,int dm) {
-			// όταν οι μεταβλητές είναι και οι δύο >0 σημαίνει ότι ο χρήστης επέλεξε και από τα δύο πεδία,επομένως μπορεί να προχωρήσει
-			//η παραγγελία και ενεργοποιήται το κουμπί
+			//when the variables are both >0 it means that the user has selected from both fields, so the order can proceed
+			// and the button is activated
 			if(pm>0&&dm>0) {
 				confirmorderbtn.setEnabled(true);
 			}

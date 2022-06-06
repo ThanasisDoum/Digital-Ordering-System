@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,9 +10,13 @@ import java.awt.event.ActionEvent;
 
 public class U18warning extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	//σε αυτήν την κλάση πραγματοποιήται η προειδοποίηση την πρώτη φορά που θα προσπαθήσει να προσθέσει κάποιο αλκοολούχο ρόφημα στο καλάθι του
+	// in this class the warning is made the first time the user tries to add an alcoholic beverage to his basket
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -57,7 +60,7 @@ public class U18warning extends JFrame {
 		JButton no = new JButton("\u038C\u03C7\u03B9 \u03B5\u03AF\u03BC\u03B1\u03B9 \u03BA\u03AC\u03C4\u03C9 \u03C4\u03C9\u03BD 18");
 		no.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//αφού ο χρήστης επέλεξε ότι δεν είναι >18 δεν συμβαίνει τίποτα και η προειδοποίηση θα συνεχίσει να εμφανίζεται
+				// after the user has selected that it is not> 18 nothing happens and the warning will continue to appear
 				dispose();
 			}
 		});
